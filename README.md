@@ -32,11 +32,11 @@ Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu
       - [⚠️ **Inicie seu `docker-compose` antes de testar localmente!** ⚠️](#️-inicie-seu-docker-compose-antes-de-testar-localmente-️)
       - [Variáveis de ambiente](#variáveis-de-ambiente)
       - [Variáveis:](#variáveis)
-      - [Chave JWT:](#chave-jwt)
+      - [Chave JWT e criptografia de senhas:](#chave-jwt-e-criptografia-de-senhas)
       - [Testes de cobertura](#testes-de-cobertura)
     - [Dicas](#dicas)
       - [Status HTTP](#status-http)
-  - [Lista Pré-Requisitos:](#lista-pré-requisitos)
+  - [Configuração Docker](#configuração-docker)
     - [Docker e Docker-compose](#docker-e-docker-compose)
       - [Crie os arquivos dockerfile e docker-compose](#crie-os-arquivos-dockerfile-e-docker-compose)
   - [Lista de Requisitos:](#lista-de-requisitos)
@@ -132,7 +132,7 @@ Para adicionar uma partida é necessário usuário e senha, portanto a pessoa de
 
   - Serão `4` dias de projeto;
 
-  - Data de entrega para avaliação final do projeto: `28/03/2022 14:00`.
+  - Data de entrega para avaliação final do projeto: `28/03/2022 - 14:00h`.
 
 ---
 
@@ -155,7 +155,7 @@ Para adicionar uma partida é necessário usuário e senha, portanto a pessoa de
     * Exemplo: `git checkout master`
   * Agora crie uma branch à qual você vai submeter os `commits` do seu projeto
     * Você deve criar uma branch no seguinte formato: `nome-de-usuario-nome-do-projeto`
-    * Exemplo: `git checkout -b joaozinho-sd-014-c-trybe-futebol-clube`
+    * Exemplo: `git checkout -b joaozinho-sd-0x-trybe-futebol-clube`
 
 4. Adicione as mudanças ao _stage_ do Git e faça um `commit`
   * Verifique que as mudanças ainda não estão no _stage_
@@ -170,7 +170,7 @@ Para adicionar uma partida é necessário usuário e senha, portanto a pessoa de
         * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
 
 5. Adicione a sua branch com o novo `commit` ao repositório remoto
-  * Usando o exemplo anterior: `git push -u origin joaozinho-sd-014-c-trybe-futebol-clube`
+  * Usando o exemplo anterior: `git push -u origin joaozinho-sd-0x-trybe-futebol-clube`
 
 6. Crie um novo `Pull Request` _(PR)_
   * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-0x-project-[nome-do-projeto]/pulls)
@@ -211,7 +211,7 @@ Para garantir a qualidade do código, usaremos o [ESLint](https://eslint.org/) p
 
 Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json` nos seguintes caminhos:
 
-- `sd-014-c-trybe-futebol-clube/app/backend/package.json`
+- `sd-0x-trybe-futebol-clube/app/backend/package.json`
 
 Para rodar o `ESLint` em um projeto, basta executar o comando `npm install` dentro do projeto e depois `npm run lint`. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
 
@@ -244,7 +244,7 @@ Os testes vão utilizar sua aplicação do compose para fazer as validações, p
 
 **Faça essas configurações também para as variáveis de ambiente usadas nesses arquivo:**
 
-`sd-00-trybe-futebol-clube-2022-02-22-15-49-09-staging/app/backend/src/database/config/database.ts`
+`sd-0x-trybe-futebol-clube/app/backend/src/database/config/database.ts`
 
 ```
 module.exports = {
@@ -272,9 +272,11 @@ module.exports = {
 
 **Com elas que iremos conseguir conectar ao banco do avaliador automático**
 
-#### Chave JWT:
+#### Chave JWT e criptografia de senhas:
 
-⚠️ A sua chave `JWT` de ser inserida em `app/backend/jwt.evaluation.key` e pode ser carregada no backend com o uso da biblioteca `fs`.
+⚠️ A sua chave `JWT` deve ser inserida em `app/backend/jwt.evaluation.key` e pode ser carregada no backend com o uso da biblioteca `fs`.
+
+⚠️ A biblioteca utilizada para criptografar a senha no banco de dados é a `bcryptjs` [bcryptjs npm](https://www.npmjs.com/package/bcryptjs). Utilize essa biblioteca, ela pode ser colocada como dependência em `app/backend/package.json` para depois instalar todos os pacotes. ⚠️
 
 #### Testes de cobertura
 
@@ -357,9 +359,13 @@ Alguns exemplos:
 
 ---
 
-## Lista Pré-Requisitos:
+## Configuração Docker:
 
 ### Docker e Docker-compose
+
+#### A criação do docker-compose deve acontecer somente após ter feito o terceiro requisito.
+
+⚠ O seu docker-compose precisa estar na versão 1.29 ou superior. [Veja aqui a documentação para atualizar o docker-compose.](https://docs.docker.com/compose/install/) ⚠
 
 #### Crie os arquivos dockerfile e docker-compose
   - As pastas `frontend/` e `backend/` devem possuir um arquivo dockerfile
@@ -420,6 +426,11 @@ services:
     cap_add:
       - SYS_NICE # Deve omitir alertas menores
 ```
+
+⚠️ Só o seu docker-compose não vai ser suficiente para gerar os containers. Será necessário criar os models e as migrations para que seu projeto seja executável via Docker. **Por isso atente-se a implementar os 3 primeiros requisitos para começar a testar o projeto usando o Docker e docker-compose.**
+
+
+
 
 
 ## Lista de Requisitos:
@@ -1010,7 +1021,7 @@ Use o material que você já viu sobre [Code Review](https://app.betrybe.com/cou
 
 Ao finalizar e submeter o projeto, não se esqueça de avaliar sua experiência preenchendo o formulário. Leva menos de 3 minutos!
 
-Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](http://schimmel.biz)
+Link: [FORMULÁRIO DE AVALIAÇÃO DE PROJETO](https://be-trybe.typeform.com/to/ZTeR4IbH)
 
 O avaliador automático não necessariamente avalia seu projeto na ordem em que os requisitos aparecem no readme. Isso acontece para deixar o processo de avaliação mais rápido. Então, não se assuste se isso acontecer, ok?
 
