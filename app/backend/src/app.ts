@@ -21,7 +21,7 @@ class App {
 
   public start(PORT: string | number): void {
     this.app.listen(PORT, () => {
-      console.log('Running on', PORT);
+      console.log('🚀 [Server] Servidor rodando na porta', PORT);
     });
   }
 }
