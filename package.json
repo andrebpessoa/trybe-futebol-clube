@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "npm run install:apps",
     "install:apps": "./apps_install.sh",
-    "pretest": "(cd ./app/backend /bin/sh tsc_eval.sh)",
+    "pretest": "(cd ./app/backend && /bin/sh tsc_eval.sh)",
     "test": "jest -i --forceExit --verbose",
     "test:browser": "SHOW_BROWSER=true npm test",
     "test:debug": "DEBUG=true npm test",
