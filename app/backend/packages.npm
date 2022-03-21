@@ -1,0 +1,4 @@
+@types/bcryptjs -D
+express-async-errors -D
+bcryptjs
+joi

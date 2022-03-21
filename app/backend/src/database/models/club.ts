@@ -2,7 +2,9 @@ import { DataTypes, Model } from 'sequelize';
 import db from '.';
 
 class Club extends Model {
-  public club_name: string;
+  declare id: string;
+
+  declare club_name: string;
 }
 
 Club.init({
