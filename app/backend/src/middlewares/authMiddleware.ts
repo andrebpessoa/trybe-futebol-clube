@@ -22,7 +22,7 @@ const authMiddleware: RequestHandler = async (req, res, next) => {
 
   const JWT_SECRET = await readFile(path.join(process.cwd(), 'jwt.evaluation.key'));
 
-  if (!authorization) throw new LoginError('Token not found!', 401);
+  if (!authorization) throw new LoginError('Token not found', 401);
 
   try {
     const { email } = await verify(authorization, JWT_SECRET) as ITokenPayload;
@@ -31,7 +31,7 @@ const authMiddleware: RequestHandler = async (req, res, next) => {
 
     if (!user) throw new LoginError('Error searching user token', 401);
 
-    res.status(200).json(user.role);
+    return res.status(200).json(user.role);
   } catch (error) {
     return next(new LoginError('Expired or invalid token', 401));
   }

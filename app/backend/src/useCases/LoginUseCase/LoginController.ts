@@ -12,10 +12,9 @@ export default class LoginController {
 
     try {
       const user = await this.loginUseCase.execute(data);
-      console.log('user controller', user);
-      
+
       return res.status(200).json(user);
-    } catch ({message, statusCode}) {
+    } catch ({ message, statusCode }) {
       throw new LoginError(`${message}`, statusCode);
     }
   }
