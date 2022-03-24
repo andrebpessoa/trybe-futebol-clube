@@ -4,7 +4,7 @@ import db from '.';
 class Club extends Model {
   declare id: string;
 
-  declare club_name: string;
+  declare clubName: string;
 }
 
 Club.init({
@@ -14,15 +14,16 @@ Club.init({
     primaryKey: true,
     allowNull: false,
   },
-  club_name: {
+  clubName: {
     type: DataTypes.STRING,
     allowNull: false,
   },
 }, {
   underscored: true,
   sequelize: db,
-  modelName: 'Club',
   timestamps: false,
+  modelName: 'Club',
+  tableName: 'clubs',
 });
 
 export default Club;

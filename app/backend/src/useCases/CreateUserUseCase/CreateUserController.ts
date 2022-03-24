@@ -15,7 +15,7 @@ export default class CreateUserController {
 
       return res.status(201).json(user);
     } catch ({ message, statusCode }) {
-      throw new CreateUserError(`${message}`, 500);
+      throw new CreateUserError(`${message}`, statusCode);
     }
   }
 }

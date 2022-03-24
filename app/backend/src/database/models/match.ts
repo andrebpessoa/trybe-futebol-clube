@@ -5,15 +5,15 @@ import Club from './club';
 class Match extends Model {
   declare id: string;
 
-  declare home_team: number;
+  declare homeTeam: number;
 
-  declare home_team_goals: number;
+  declare homeTeamGoals: number;
 
-  declare away_team: number;
+  declare awayTeam: number;
 
-  declare away_team_goals: number;
+  declare awayTeamGoals: number;
 
-  declare in_progress: boolean;
+  declare inProgress: boolean;
 }
 
 Match.init({
@@ -23,31 +23,32 @@ Match.init({
     primaryKey: true,
     allowNull: false,
   },
-  home_team: {
+  homeTeam: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  home_team_goals: {
+  homeTeamGoals: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  away_team: {
+  awayTeam: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  away_team_goals: {
+  awayTeamGoals: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  in_progress: {
+  inProgress: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
 }, {
   underscored: true,
   sequelize: db,
-  modelName: 'Match',
   timestamps: false,
+  modelName: 'Match',
+  tableName: 'matches',
 });
 
 Club.belongsTo(Match, { foreignKey: 'homeTeam', as: 'match' });
