@@ -1,8 +1,8 @@
 import { hashSync } from 'bcryptjs';
+import ErrorMiddleware from '../../middlewares/ErrorMiddleware';
 import User from '../../database/models/user';
 import { IUsersRepository } from '../../repositories/IUsersReposity';
 import { ICreateUserRequestDTO } from './CreateUserDTO';
-import CreateUserError from './CreateUserError';
 
 export default class CreateUserUseCase {
   constructor(
@@ -12,7 +12,7 @@ export default class CreateUserUseCase {
   async execute(data: ICreateUserRequestDTO) {
     const userAlreadyExists = await this.usersRepository.findByEmail(data.email);
 
-    if (userAlreadyExists) throw new CreateUserError('User already exists', 409);
+    if (userAlreadyExists) throw new ErrorMiddleware('User already exists', 409);
 
     const user = new User(data).get({ plain: true });
 

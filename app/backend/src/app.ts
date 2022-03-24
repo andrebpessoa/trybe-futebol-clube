@@ -1,9 +1,7 @@
 import * as express from 'express';
 import 'express-async-errors';
 import domainErrorHandler from './middlewares/domainErrorHandler';
-import clubsRouter from './routes/ClubsRouter';
-import loginRouter from './routes/LoginRouter';
-import userRouter from './routes/UserRouter';
+import * as routes from './routes';
 
 class App {
   public app: express.Express;
@@ -14,9 +12,10 @@ class App {
   }
 
   private middlewares(): void {
-    this.app.use(userRouter);
-    this.app.use(loginRouter);
-    this.app.use(clubsRouter);
+    this.app.use(routes.userRouter);
+    this.app.use(routes.loginRouter);
+    this.app.use(routes.clubsRouter);
+    this.app.use(routes.matchesRouter);
     this.app.use(domainErrorHandler);
   }
 

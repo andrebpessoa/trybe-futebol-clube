@@ -1,4 +1,4 @@
-export default class FindAllClubsError extends Error {
+export default class ErrorMiddleware extends Error {
   constructor(
     message: string,
     public statusCode: number | unknown,

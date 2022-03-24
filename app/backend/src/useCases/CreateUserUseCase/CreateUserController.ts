@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import CreateUserError from './CreateUserError';
+import ErrorMiddleware from '../../middlewares/ErrorMiddleware';
 import CreateUserUseCase from './CreateUserUseCase';
 
 export default class CreateUserController {
@@ -15,7 +15,7 @@ export default class CreateUserController {
 
       return res.status(201).json(user);
     } catch ({ message, statusCode }) {
-      throw new CreateUserError(`${message}`, statusCode);
+      throw new ErrorMiddleware(`${message}`, statusCode);
     }
   }
 }

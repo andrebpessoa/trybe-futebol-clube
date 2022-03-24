@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import LoginError from './LoginError';
+import ErrorMiddleware from '../../middlewares/ErrorMiddleware';
 import LoginUseCase from './LoginUseCase';
 
 export default class LoginController {
@@ -15,7 +15,7 @@ export default class LoginController {
 
       return res.status(200).json(user);
     } catch ({ message, statusCode }) {
-      throw new LoginError(`${message}`, statusCode);
+      throw new ErrorMiddleware(`${message}`, statusCode);
     }
   }
 }
