@@ -1,5 +1,5 @@
 import * as chai from 'chai';
-import { exec } from 'child_process';
+import { execSync } from 'child_process';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
@@ -10,12 +10,12 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Login tests: "/login" & "/login/validate"', () => {
+describe('Login tests: "/login"', () => {
   let chaiHttpResponse: Response;
   let loginToken: string;
 
   before(async () => {
-    exec('npm run db:reset');
+    execSync('npm run db:reset');
   });
 
   describe('When login is successful', () => {

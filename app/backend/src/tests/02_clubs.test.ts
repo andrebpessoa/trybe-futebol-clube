@@ -1,5 +1,5 @@
 import * as chai from 'chai';
-import { exec } from 'child_process';
+import { execSync } from 'child_process';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
@@ -12,11 +12,11 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Clubs tests: "/clubs" & "/clubs/:id"', () => {
+describe('Clubs tests: "/clubs"', () => {
   let chaiHttpResponse: Response;
 
   before(async () => {
-    exec('npm run db:reset');
+    execSync('npm run db:reset');
   });
 
   describe('When making a GET request do "/clubs"', () => {
