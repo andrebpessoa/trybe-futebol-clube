@@ -1,6 +1,7 @@
 import Match from '../../database/models/match';
 import Club from '../../database/models/club';
 import { IMatchesRepository } from '../IMatchesRepositories';
+import { GoalsType } from '../../useCases/EditMatchUseCase/EditMatchDTO';
 
 export default class MatchesRepository implements IMatchesRepository {
   private match = Match;
@@ -52,6 +53,18 @@ export default class MatchesRepository implements IMatchesRepository {
     const match = await this.findById(id);
 
     const finishedMatch = match?.update({ where: id, inProgress: false });
+
+    return finishedMatch;
+  }
+
+  async edit(id: number, data: GoalsType): Promise<Match | undefined> {
+    const match = await this.findById(id);
+
+    const finishedMatch = match?.update({
+      where: id,
+      homeTeamGoals: data.homeTeamGoals,
+      awayTeamGoals: data.awayTeamGoals,
+    });
 
     return finishedMatch;
   }

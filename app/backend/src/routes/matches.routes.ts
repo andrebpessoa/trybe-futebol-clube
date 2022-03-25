@@ -4,6 +4,7 @@ import authMiddleware from '../middlewares/auth.middleware';
 import { finishMatchController } from '../useCases/FinishMatchUseCase';
 import { createMatchController } from '../useCases/CreateMatchUseCase';
 import { findMatchesController } from '../useCases/FindMatchesUseCase';
+import { editMatchController } from '../useCases/EditMatchUseCase';
 
 const matchesRouter = Router();
 
@@ -20,6 +21,18 @@ matchesRouter.post(
 
 matchesRouter.patch(
   '/matchs/:id/finish',
+  authMiddleware,
+  async (req, res) => finishMatchController.handle(req, res),
+);
+
+matchesRouter.patch(
+  '/matchs/:id/',
+  authMiddleware,
+  async (req, res) => editMatchController.handle(req, res),
+);
+
+matchesRouter.patch(
+  '/matchs/:id/',
   authMiddleware,
   async (req, res) => finishMatchController.handle(req, res),
 );
