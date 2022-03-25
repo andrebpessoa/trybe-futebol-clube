@@ -17,23 +17,25 @@ export default class LoginUseCase {
 
     if (!data.email || !data.password) throw new ErrorMiddleware('All fields must be filled', 401);
 
-    const user = await this.loginRepository.findByEmail(data.email);
+    const userExists = await this.loginRepository.findByEmail(data.email);
 
-    if (!user) throw new ErrorMiddleware('Incorrect email or password', 401);
+    if (!userExists) throw new ErrorMiddleware('Incorrect email or password', 401);
 
-    const isValidPassword = await compare(data.password, user.password);
+    const isValidPassword = await compare(data.password, userExists.password);
 
     if (!isValidPassword) throw new ErrorMiddleware('Incorrect email or password', 401);
 
-    const token = sign(data, JWT_SECRET, { expiresIn: '1h' });
+    const user = {
+      id: userExists.id,
+      username: userExists.username,
+      role: userExists.role,
+      email: userExists.email,
+    };
+
+    const token = sign(user, JWT_SECRET, { expiresIn: '1h' });
 
     return {
-      user: {
-        id: user.id,
-        username: user.username,
-        role: user.role,
-        email: user.email,
-      },
+      user,
       token,
     };
   }

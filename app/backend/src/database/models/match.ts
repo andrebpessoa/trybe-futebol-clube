@@ -3,7 +3,7 @@ import db from '.';
 import Club from './club';
 
 class Match extends Model {
-  declare id: string;
+  declare id?: string;
 
   declare homeTeam: number;
 

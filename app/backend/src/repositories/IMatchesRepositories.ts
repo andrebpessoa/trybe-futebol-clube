@@ -4,4 +4,6 @@ export interface IMatchesRepository {
   findAll(): Promise<Match[]>;
   findAllMatchesByProgress(query: boolean): Promise<Match[] | null>;
   findById(id: number): Promise<Match | null>;
+  save(data: Match): Promise<Match>;
+  finish(id: number): Promise<Match | undefined>;
 }

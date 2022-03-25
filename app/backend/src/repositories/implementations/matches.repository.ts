@@ -41,4 +41,18 @@ export default class MatchesRepository implements IMatchesRepository {
 
     return result;
   }
+
+  async save(data: Match): Promise<Match> {
+    const result = (await this.match.create(data)).get({ plain: true });
+
+    return result;
+  }
+
+  async finish(id: number): Promise<Match | undefined> {
+    const match = await this.findById(id);
+
+    const finishedMatch = match?.update({ where: id, inProgress: false });
+
+    return finishedMatch;
+  }
 }

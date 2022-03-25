@@ -1,4 +1,4 @@
-import ClubsRepository from '../../repositories/implementations/ClubsRepository';
+import ClubsRepository from '../../repositories/implementations/clubs.repository';
 import FindClubsController from './FindClubsController';
 import FindClubsUseCase from './FindClubsUseCase';
 

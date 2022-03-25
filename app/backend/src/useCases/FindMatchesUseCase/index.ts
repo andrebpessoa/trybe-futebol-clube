@@ -1,4 +1,4 @@
-import MatchesRepository from '../../repositories/implementations/MatchesRepository';
+import MatchesRepository from '../../repositories/implementations/matches.repository';
 import FindMatchesController from './FindMatchesController';
 import FindMatchesUseCase from './FindMatchesUseCase';
 
