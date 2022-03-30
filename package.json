@@ -1,0 +1,11 @@
+{
+  "name": "trybe-futebol-clube",
+  "version": "1.0.0",
+  "description": "Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.",
+  "main": "index.js",
+  "scripts": {
+    "compose:up": "(cd app && docker-compose up -d --build)",
+    "compose:down": "(cd app && docker-compose down --remove-orphans)"
+  },
+  "author": "Trybe"
+}
