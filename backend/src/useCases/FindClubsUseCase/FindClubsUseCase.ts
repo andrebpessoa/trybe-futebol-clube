@@ -18,8 +18,6 @@ export default class FindClubsUseCase {
       return club;
     }
 
-    const clubs = await this.clubsRepository.findAll();
-
-    return clubs;
+    return this.clubsRepository.findAll();
   }
 }

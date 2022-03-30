@@ -1,7 +1,7 @@
-import clubsRouter from './clubs.routes';
-import loginRouter from './login.routes';
-import userRouter from './user.routes';
-import matchesRouter from './matches.routes';
-import leaderboardRouter from './leaderboard.routes';
+import clubsRouter from './clubsRouter';
+import loginRouter from './loginRouter';
+import userRouter from './userRouter';
+import matchesRouter from './matchesRouter';
+import leaderboardRouter from './leaderboardRouter';
 
 export { clubsRouter, loginRouter, userRouter, matchesRouter, leaderboardRouter };

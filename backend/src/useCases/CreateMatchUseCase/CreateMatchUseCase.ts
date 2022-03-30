@@ -22,8 +22,6 @@ export default class CreateMatchUseCase {
       throw new ErrorMiddleware('There is no team with such id!', 401);
     }
 
-    const newMatch = await this.matchesRepository.save(match);
-
-    return newMatch;
+    return this.matchesRepository.save(match);
   }
 }
