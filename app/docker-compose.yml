@@ -1,0 +1,51 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./frontend
+    container_name: app-frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "lsof", "-t", "-i:3000" ]
+      timeout: 10s
+      retries: 5
+    ports:
+      - "3000:3000"
+    restart: always
+
+  backend:
+    build: ./backend
+    container_name: app-backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - PORT=3001
+      - DB_USER=root
+      - DB_PASS=123456
+      - DB_HOST=db
+      - DB_NAME=TRYBE_FUTEBOL_CLUBE
+      - DB_PORT=3306
+    healthcheck:
+      test: [ "CMD", "lsof", "-t", "-i:3001" ]
+      timeout: 10s
+      retries: 5
+    ports:
+      - "3001:3001"
+    restart: always
+
+  db:
+    image: mysql:8.0.21
+    container_name: db
+    ports:
+      - 3002:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    restart: 'always'
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 10s
+      retries: 5
+    cap_add:
+      - SYS_NICE
