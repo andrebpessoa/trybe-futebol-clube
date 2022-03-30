@@ -9,11 +9,11 @@ import './styles/app.css';
 function App() {
   return (
     <Routes>
-      <Route path="matchs/settings" element={ <MatchSettings /> } />
-      <Route path="/leaderboard" element={ <Leaderboard /> } />
-      <Route path="/matchs" element={ <Games /> } />
-      <Route path="/login" element={ <Login /> } />
-      <Route exact path="/" element={ <Navigate to="/leaderboard" /> } />
+      <Route path="matchs/settings" element={<MatchSettings />} />
+      <Route path="/leaderboard" element={<Leaderboard />} />
+      <Route path="/matchs" element={<Games />} />
+      <Route path="/login" element={<Login />} />
+      <Route exact path="/" element={<Navigate to="/leaderboard" />} />
     </Routes>
   );
 }
