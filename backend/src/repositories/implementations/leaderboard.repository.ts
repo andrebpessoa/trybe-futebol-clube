@@ -97,7 +97,7 @@ export default class LeaderboardRepository implements ILeaderboardRepository {
   }
 
   async findAllHomeMatches() {
-    const result = (await this.club.findAll({
+    return (await this.club.findAll({
       include: [{
         model: Match,
         as: 'homeMatches',
@@ -112,12 +112,10 @@ export default class LeaderboardRepository implements ILeaderboardRepository {
 
         return rawHistory;
       });
-
-    return result;
   }
 
   async findAllAwayMatches() {
-    const result = (await this.club.findAll({
+    return (await this.club.findAll({
       include: [{
         model: Match,
         as: 'awayMatches',
@@ -131,8 +129,6 @@ export default class LeaderboardRepository implements ILeaderboardRepository {
 
         return rawHistory;
       });
-
-    return result;
   }
 
   async findAllMatches() {
@@ -159,24 +155,18 @@ export default class LeaderboardRepository implements ILeaderboardRepository {
   async findHomeLeaderboard(): Promise<ILeaderboard[]> {
     const allHomeMatches = await this.findAllHomeMatches();
 
-    const homeLeaderboard = LeaderboardRepository.createLeaderboard(allHomeMatches);
-
-    return homeLeaderboard;
+    return LeaderboardRepository.createLeaderboard(allHomeMatches);
   }
 
   async findAwayLeaderboard(): Promise<ILeaderboard[]> {
     const clubsAwayHistory = await this.findAllAwayMatches();
 
-    const awayLeaderboard = LeaderboardRepository.createLeaderboard(clubsAwayHistory);
-
-    return awayLeaderboard;
+    return LeaderboardRepository.createLeaderboard(clubsAwayHistory);
   }
 
   async findLeaderboard(): Promise<ILeaderboard[]> {
     const clubsHistory = await this.findAllMatches();
 
-    const leaderboard = LeaderboardRepository.createLeaderboard(clubsHistory);
-
-    return leaderboard;
+    return LeaderboardRepository.createLeaderboard(clubsHistory);
   }
 }

@@ -24,9 +24,9 @@ export interface ILeaderboard {
 }
 
 export interface ILeaderboardRepository {
-  findAllHomeMatches(): Promise<Club[]>;
-  findAllAwayMatches(): Promise<Club[]>;
-  findAllMatches(): Promise<Club[]>;
+  findAllHomeMatches(): Promise<Club[] | void>;
+  findAllAwayMatches(): Promise<Club[] | void>;
+  findAllMatches(): Promise<Club[] | void>;
   findHomeLeaderboard(): Promise<ILeaderboard[]>;
   findAwayLeaderboard(): Promise<ILeaderboard[]>;
   findLeaderboard(): Promise<ILeaderboard[]>;

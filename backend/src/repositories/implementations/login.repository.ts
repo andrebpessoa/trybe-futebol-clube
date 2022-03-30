@@ -5,8 +5,6 @@ export default class LoginRepository implements ILoginRepository {
   private user = User;
 
   async findByEmail(email: string): Promise<User | null> {
-    const result = await this.user.findOne({ where: { email } });
-
-    return result;
+    return this.user.findOne({ where: { email } });
   }
 }

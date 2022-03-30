@@ -5,14 +5,10 @@ export default class UsersRepository implements IUsersRepository {
   private user = User;
 
   async findByEmail(email: string): Promise<User | null> {
-    const result = await this.user.findOne<User>({ where: { email } });
-
-    return result;
+    return this.user.findOne<User>({ where: { email } });
   }
 
   async save(user: User): Promise<User> {
-    const result = (await this.user.create(user)).get({ plain: true });
-
-    return result;
+    return (await this.user.create(user)).get({ plain: true });
   }
 }
