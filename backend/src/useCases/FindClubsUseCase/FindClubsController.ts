@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import ErrorMiddleware from '../../middlewares/ErrorMiddleware';
 import FindClubsUseCase from './FindClubsUseCase';
 
-export default class FindClubByIdController {
+export default class FindClubsController {
   constructor(
     private findClubsUseCase: FindClubsUseCase,
   ) {}
