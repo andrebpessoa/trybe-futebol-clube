@@ -17,6 +17,7 @@
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false,
     "skipLibCheck": true,
+    "esModuleInterop": true,
     "paths": {
       "*": ["node_modules/*"]
     },

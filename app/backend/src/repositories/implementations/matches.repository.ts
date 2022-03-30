@@ -1,7 +1,6 @@
 import Match from '../../database/models/match';
 import Club from '../../database/models/club';
-import { IMatchesRepository } from '../IMatchesRepositories';
-import { GoalsType } from '../../useCases/EditMatchUseCase/EditMatchDTO';
+import { GoalsType, IMatchesRepository } from '../IMatchesRepositories';
 
 export default class MatchesRepository implements IMatchesRepository {
   private match = Match;
@@ -18,7 +17,7 @@ export default class MatchesRepository implements IMatchesRepository {
     return result;
   }
 
-  async findAllMatchesByProgress(query: boolean): Promise<Match[] | null> {
+  async findAllMatchesByProgress(query: boolean): Promise<Match[]> {
     const result = await this.match.findAll({
       nest: true,
       where: { inProgress: query },

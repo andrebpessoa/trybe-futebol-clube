@@ -1,10 +1,10 @@
-import * as express from 'express';
+import express, { Express } from 'express';
 import 'express-async-errors';
 import domainErrorHandler from './middlewares/domainError.middleware';
 import * as routes from './routes';
 
 class App {
-  public app: express.Express;
+  public app: Express;
 
   constructor() {
     this.app = express();
@@ -16,6 +16,7 @@ class App {
     this.app.use(routes.loginRouter);
     this.app.use(routes.clubsRouter);
     this.app.use(routes.matchesRouter);
+    this.app.use(routes.leaderboardRouter);
     this.app.use(domainErrorHandler);
   }
 

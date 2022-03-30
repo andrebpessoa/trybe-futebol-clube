@@ -1,4 +1,4 @@
-export type GoalsType = {
+type GoalsType = {
   homeTeamGoals: number;
   awayTeamGoals: number;
 };
