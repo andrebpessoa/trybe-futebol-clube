@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GamerFilter = ({ currentFilter, setCurrentFilter }) => {
+const GameFilter = ({ currentFilter, setCurrentFilter }) => {
   const handleCurrentFilter = () => {
     const selectedFilter = document.getElementById('game-filter').value;
     setCurrentFilter(selectedFilter);
