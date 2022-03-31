@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../styles/pages/games.css';
 
-const GamerFilter = ({ currentFilter, setCurrentFilter }) => {
+const TableFilter = ({ currentFilter, setCurrentFilter }) => {
   const handleCurrentFilter = () => {
     const selectedFilter = document.getElementById('classification-filter').value;
     setCurrentFilter(selectedFilter);
@@ -33,9 +33,9 @@ const GamerFilter = ({ currentFilter, setCurrentFilter }) => {
   );
 };
 
-GamerFilter.propTypes = ({
+TableFilter.propTypes = ({
   currentFilter: PropTypes.string,
   setCurrentFilter: PropTypes.func,
 }).isRequired;
 
-export default GamerFilter;
+export default TableFilter;
