@@ -13,7 +13,23 @@ Algumas tecnologias utilizadas:
 * MySQL
 * Sequelize
 * Docker
-* JWT
 * Mocha
-* Chai
 * React
+
+## Como testar o projeto localmente
+
+É necessário ter o [**Docker**](https://www.docker.com/) e o [**Docker Compose**](https://docs.docker.com/compose/) instalado em sua máquina
+
+Clone o projeto:
+`git clone git@github.com:andrebpessoa/trybe-futebol-clube.git`
+
+Entre na pasta do projeto:
+`cd trybe-futebol-clube`
+
+Execute o script para iniciar o Docker Compose:
+`npm run compose:up`
+
+Após um tempo, os contêineres estarão prontos e você poderá acessar o projeto em: <http://localhost:3000>
+
+Para desligar os servidores, utilize o script:
+`npm run compose:down`
